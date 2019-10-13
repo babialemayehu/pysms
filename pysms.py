@@ -98,11 +98,12 @@ class Sms:
         return unsent
     
     def sendSms(self, message):
+        print(">>>>",message)
         phone_pattern = re.compile(r'^\+\d{12}$')
 
         if(message["phone"][0] == "0"): 
             message["phone"] = "+251"+message["phone"][1:len(message["phone"])]
-
+        
         if(len(message["message"]) > 160): 
             raise Exception("Message is too long"+str(len( message["message"]))+", the messasage should not be graterthan 160 characters")
         elif(not phone_pattern.search(message["phone"])): 
@@ -111,6 +112,7 @@ class Sms:
             return self.gsm.send_sms(message["phone"], message["message"])
 
     def sendSmses(self, messages):
+        print("+++",message)
         phone_pattern = re.compile(r'^\+\d{12}$')
         self.gsm.command("AT+CMGF=1")
         faild_sms = []
@@ -119,13 +121,14 @@ class Sms:
             try:      
                 if self.sendSms(msg) == None: 
                     faild_sms.append(msg)
-            except Exception:
+            except Exception as e:
+                print(">>",e)
                 faild_sms.append(msg)
                 
         return faild_sms
     
-gsm = Sms("/dev/ttyUSB1", logger = GsmModem.debug_logger)
-print gsm.outbox()
+# gsm = Sms("/dev/ttyUSB1", logger = GsmModem.debug_logger)
+# print gsm.outbox()
 # prSint gsm.getMessage(1)
 # print gsm.sendSmses([{ 'phone': "0978542790",'message': "AAAAA" },{ 'phone': "0978542790",'message': "bbbb json " }])
 

@@ -125,8 +125,3 @@ class Sms:
                 
         return faild_sms
     
-gsm = Sms("/dev/ttyUSB1", logger = GsmModem.debug_logger)
-print gsm.outbox()
-# prSint gsm.getMessage(1)
-# print gsm.sendSmses([{ 'phone': "0978542790",'message': "AAAAA" },{ 'phone': "0978542790",'message': "bbbb json " }])
-

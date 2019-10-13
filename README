@@ -184,3 +184,31 @@ class GsmModem(__builtin__.object)
  |      Get or set the service center address currently in use by the
  |      modem. Returns None if the modem does not support the AT+CSCA
  |      command.
+
+
+The above description shows how to use GSM and AT commands. 
+It was found on [This github repo of adammck](https://github.com/adammck/pygsm)
+
+
+I have added pysms as additional feature 
+
+### Doc 
+
+The sms constructor accepts 
+    - parms: port, logger
+    ```php
+        sms  = Sms("/dev/ttyUSB0", logger = GsmModem.debug_logger)
+    ```
+
+To get all stored sms
+    - parms: filter, _from
+    - return: List of message dectionary 
+    ```php
+        sms.storedSms(filter = "ALL", _from = "SM")
+    ```
+Get a maessage by the id of the message 
+    - parms: id, _from
+    - return: List of message dectionary 
+    ```php
+        sms.getMessage(id = 1, _from = "SM")
+    ```

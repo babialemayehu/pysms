@@ -109,6 +109,7 @@ class Sms:
         elif(not phone_pattern.search(message["phone"])): 
             raise Exception("The phone number is invalid")
         else:
+            self.sms.wait_for_network()
             return self.gsm.send_sms(message["phone"], message["message"])
 
     def sendSmses(self, messages):

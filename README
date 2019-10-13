@@ -192,7 +192,7 @@ It was found on [This github repo of adammck](https://github.com/adammck/pygsm)
 
 I have added pysms as additional feature 
 
-### Doc 
+###Doc 
 
 The sms constructor accepts 
     - parms: port, logger
